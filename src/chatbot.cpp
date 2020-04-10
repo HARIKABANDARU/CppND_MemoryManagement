@@ -44,7 +44,57 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+//Defining the constructors
+ChatBot::ChatBot(const ChatBot &src){
+    std::cout << "Copy Constructor Chatbot Called\n";
+    _chatLogic = src._chatLogic;
+    _rootNode = src._rootNode;
+    _image = src._image;
+    
+}
+ChatBot& ChatBot::operator=(const ChatBot &src){
+    std::cout << "Copy Assignment of ChatBot Called \n";
+    if(this == &src)
+        return *this;
+    _chatLogic = src._chatLogic;
+    _rootNode = src._rootNode;
+    _image = src._image;
+    return *this;
+    
 
+}
+ChatBot::ChatBot(ChatBot &&src){
+    std::cout << "Move Constructor Chatbot\n";
+    _chatLogic = src._chatLogic;
+    _rootNode = src._rootNode;
+    _image = src._image;
+
+    _chatLogic->SetChatbotHandle(this);
+
+    src._chatLogic = nullptr;
+    src._rootNode = nullptr;
+    src._image = nullptr;
+
+}
+ChatBot& ChatBot::operator=(ChatBot &&src){
+    std::cout << "Move Assigment chat bot\n";
+    if(this == &src)
+        return *this;
+    if(!_image)
+        delete _image;
+    
+    _chatLogic = src._chatLogic;
+    _rootNode = src._rootNode;
+    _image = src._image;
+
+    _chatLogic->SetChatbotHandle(this);
+
+    src._chatLogic = nullptr;
+    src._rootNode = nullptr;
+    src._image = NULL;
+    
+
+}
 ////
 //// EOF STUDENT CODE
 

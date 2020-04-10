@@ -27,9 +27,14 @@ public:
     ChatBot(std::string filename); // constructor WITH memory allocation
     ~ChatBot();
 
+
+    // Rule of 5 since modified destructor 
     //// STUDENT CODE
     ////
-
+    ChatBot(const ChatBot &src); //copy constructor
+    ChatBot &operator=(const ChatBot &src); //Copy assignment
+    ChatBot(ChatBot &&src); //Move constrcutor
+    ChatBot &operator=(ChatBot &&src); //Move assignment 
     ////
     //// EOF STUDENT CODE
 
